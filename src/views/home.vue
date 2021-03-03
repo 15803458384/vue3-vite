@@ -7,13 +7,23 @@
     <HelloWorld msg="Hello Vue 3 + Vite1swqdqdqdqd" />
     <button @click="change">显示</button>
     <button @click="toPage()">去详情页</button>
+    <div>
+     x轴： {{x}}   y轴： {{ y}}
+    </div>
   </div>
 </template>
 <script>
-import { ref, onMounted, onUpdated, onUnmounted } from 'vue';
+import {
+  ref,
+  onMounted,
+  onUpdated,
+  onUnmounted,
+  getCurrentInstance
+} from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import login from '@/components/login.vue';
 import HelloWorld from '@/components/HelloWorld.vue';
+import { useMousePosition } from '@/utils/mousemove';
 export default {
   components: {
     login,
@@ -23,9 +33,10 @@ export default {
     const isShow = ref(false);
     const router = useRouter();
     const route = useRoute();
+    const { ctx } = getCurrentInstance();
+    const { x, y } = useMousePosition();
     onMounted(() => {
-      isShow.value = route.params.show;
-      console.log(isShow.value);
+      isShow.value = route.query.show;
       console.log('mounted!');
     });
     onUpdated(() => {
@@ -44,7 +55,7 @@ export default {
     function toPage() {
       router.push({ path: '/details', query: { name: '111' } });
     }
-    return { isShow, userlogin, change, toPage };
+    return { isShow, userlogin, change, toPage, x, y };
   }
 };
 </script>
