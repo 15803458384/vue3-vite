@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { injectHtml } from 'vite-plugin-html';
 import legacy from '@vitejs/plugin-legacy'
+import vitePluginImp from 'vite-plugin-imp'
 
 const { resolve } = require('path')
 
@@ -18,6 +19,16 @@ export default defineConfig({
     }),
     legacy({
       targets: ['defaults', 'not IE 11']
+    }),
+    vitePluginImp({
+      libList: [
+        {
+          libName: 'element-plus',
+          style: (name) => {
+            return `element-plus/lib/theme-chalk/${name}.css`
+          }
+        }
+      ]
     })
   ],
   alias: [
