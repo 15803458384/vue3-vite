@@ -7,7 +7,7 @@
     <HelloWorld msg="Hello Vue 3 + Vite1swqdqdqdqd" />
     <button @click="change">显示</button>
     <button @click="toPage()">去详情页</button>
-    <div>
+    <div style="background:red;color:#fff;">
      x轴： {{x}}   y轴： {{ y}}
     </div>
   </div>

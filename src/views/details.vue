@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, getCurrentInstance, computed, onMounted } from 'vue';
+import { reactive, toRefs, getCurrentInstance, computed, onMounted,h } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { codeLogin } from '../api/common';
@@ -30,6 +30,9 @@ export default {
     // ElButton,
     // ElSelect,
     // ElOption
+  },
+render() {
+    return h('div')
   },
   setup() {
     const router = useRouter();
